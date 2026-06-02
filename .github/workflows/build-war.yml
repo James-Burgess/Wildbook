@@ -1,0 +1,30 @@
+name: Build WAR artifact
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build Wildbook WAR
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build WAR via Docker (build stage)
+        run: docker build --target build -t wildbook-build .
+
+      - name: Extract WAR
+        run: |
+          docker create --name extract wildbook-build
+          docker cp extract:/app/target/. ./target/
+          docker rm extract
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wildbook-war
+          path: target/wildbook-*.war
+          retention-days: 7
