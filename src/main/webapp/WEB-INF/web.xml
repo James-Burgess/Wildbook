@@ -420,13 +420,23 @@
 		<servlet-class>org.ecocean.api.UserHome</servlet-class>
 	</servlet>
 
-	<servlet-mapping>
-		<servlet-name>ApiUserHome</servlet-name>
-		<url-pattern>/api/v3/home</url-pattern>
-	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>ApiUserHome</servlet-name>
+ 		<url-pattern>/api/v3/home</url-pattern>
+ 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>ApiBaseObject</servlet-name>
+ 	<servlet>
+ 		<servlet-name>ApiPublicHome</servlet-name>
+ 		<servlet-class>org.ecocean.api.PublicHome</servlet-class>
+ 	</servlet>
+
+ 	<servlet-mapping>
+ 		<servlet-name>ApiPublicHome</servlet-name>
+ 		<url-pattern>/api/v3/public/homepage</url-pattern>
+ 	</servlet-mapping>
+
+ 	<servlet>
+ 		<servlet-name>ApiBaseObject</servlet-name>
 		<servlet-class>org.ecocean.api.BaseObject</servlet-class>
 	</servlet>
 
