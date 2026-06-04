@@ -1,0 +1,44 @@
+:80 {
+    # API routes -> Tomcat (NO path stripping)
+    handle /api/* {
+        reverse_proxy wildbook:8080 {
+            header_up Host {host}
+            header_up X-Forwarded-For {remote}
+            header_up X-Forwarded-Proto {scheme}
+
+            transport http {
+                dial_timeout 1200s
+                response_header_timeout 1200s
+            }
+        }
+    }
+
+    # Redirect /react to /react/ so handle_path matches
+    @isReactBare path /react
+    redir @isReactBare /react/ permanent
+
+    # React CRA dev server (livereload via WebSocket)
+    # Using handle NOT handle_path — CRA dev server with PUBLIC_URL=/react/
+    # needs to receive the full path including /react/ prefix.
+    handle /react* {
+        reverse_proxy frontend:3000 {
+            header_up Host {host}
+            header_up X-Forwarded-For {remote}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
+
+    # Legacy JSPs and everything else -> Tomcat
+    handle {
+        reverse_proxy wildbook:8080 {
+            header_up Host {host}
+            header_up X-Forwarded-For {remote}
+            header_up X-Forwarded-Proto {scheme}
+
+            transport http {
+                dial_timeout 1200s
+                response_header_timeout 1200s
+            }
+        }
+    }
+}
