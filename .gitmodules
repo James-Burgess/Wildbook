@@ -1,15 +1,15 @@
 [submodule "wildbook-ia"]
 	path = wildbook-ia
-	url = git@github.com:WildMeOrg/wildbook-ia.git
+	url = git@github.com:James-Burgess/wildbook-ia.git
 [submodule "wildbook"]
 	path = wildbook
-	url = git@github.com:WildMeOrg/wildbook.git
+	url = git@github.com:James-Burgess/wildbook.git
 [submodule "wildbook-docs"]
 	path = wildbook-docs
-	url = git@github.com:WildMeOrg/wildbook-docs.git
+	url = git@github.com:James-Burgess/wildbook-docs.git
 [submodule "ml-service"]
 	path = ml-service
-	url = git@github.com:WildMeOrg/ml-service.git
+	url = git@github.com:James-Burgess/ml-service.git
 [submodule "pipeline"]
 	path = pipeline
 	url = git@github.com:James-Burgess/pipeline.git
